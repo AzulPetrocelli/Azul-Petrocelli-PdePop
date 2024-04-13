@@ -7,7 +7,7 @@ data Cancion = UnaCancion {
     instrumentos :: Instrumentos
 } deriving (Show)
 
-data Instrumentos = Acapella | Guitarra | Bajo | Bateria | Teclado  deriving (Show)
+data Instrumentos = Acapella | Guitarra | Bajo | Bateria | Teclado  deriving (Show, Eq)
 
 
 -- canciones para la banda
@@ -33,3 +33,7 @@ ordenarCancionAlfabeticamente :: Cancion -> Cancion -> String
 ordenarCancionAlfabeticamente cancionA cancionB
     | retornarTitulo cancionA < retornarTitulo cancionB = retornarTitulo cancionA
     | retornarTitulo cancionA > retornarTitulo cancionB = retornarTitulo cancionB
+
+-- la cancion es acapela?
+esAcapela :: Cancion -> Bool
+esAcapela cancion = (instrumentos cancion) == Acapella
