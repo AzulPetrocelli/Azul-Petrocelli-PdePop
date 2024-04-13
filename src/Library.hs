@@ -24,3 +24,28 @@ cancion2 = unaCancion {
     duracionMinutos = 1,
     instrumentos = [Acapella]
 }
+
+-- ordenar por orden alfabetico
+retornarTitulo :: Cancion -> String
+retornarTitulo cancion = titulo cancion
+
+ordenarCancionAlfabeticamente :: Ord String => String -> String -> Cancion
+ordenarCancionAlfabeticamente cancionA cancionB
+    | retornarTitulo cancionA > retornarTitulo cancionB = cancionB
+    | retornarTitulo cancionA > retornarTitulo cancionB = cancionB
+
+
+-- aceptacion por los fans y puntaje
+puntajeDeLaCancion :: Cancion -> Number
+puntajeDeLaCancion cancion 
+  |  head (titulo cancion) == "M" = 500
+  |  even (duracionMinutos cancion) = length (titulo cancion) * 10
+  |  instrumentos cancion == Acapella = 10
+
+aceptacionDelPublico :: Cancion -> Bool
+aceptacionDelPublico cancion = puntajeDeLaCancion cancion > 60
+
+
+-- la cancion es acapela?
+esAcapela :: Cancion -> Bool
+esAcapela cancion = head (instrumentos cancion) == Acapella
