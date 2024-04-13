@@ -21,7 +21,7 @@ cancion1 = UnaCancion {
 cancion2 :: Cancion
 cancion2 = UnaCancion {
     titulo = "No vives de ensalada",
-    duracionMinutos = 1,
+    duracionMinutos = 2,
     instrumentos = Acapella
 }
 
@@ -37,3 +37,13 @@ ordenarCancionAlfabeticamente cancionA cancionB
 -- la cancion es acapela?
 esAcapela :: Cancion -> Bool
 esAcapela cancion = (instrumentos cancion) == Acapella
+
+-- aceptacion por los fans y puntaje
+puntajeDeLaCancion :: Cancion -> Number
+puntajeDeLaCancion cancion 
+  |  head (titulo cancion) == 'M' = 500
+  |  even (duracionMinutos cancion) = length (titulo cancion) * 10
+  |  instrumentos cancion == Acapella = 10
+
+aceptacionDelPublico :: Cancion -> Bool
+aceptacionDelPublico cancion = puntajeDeLaCancion cancion > 60
